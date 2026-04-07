@@ -19,11 +19,11 @@ class SignInPageObject extends PageObject {
     return cy.getByDataCy('error-message');
   }
 
-  typeEmail(email) {
+  typeEmail(email = 'riot@qa.team') {
     this.emailField.type(email);
   }
 
-  typePassword(password) {
+  typePassword(password = '12345Qwert!') {
     this.passwordField.type(password);
   }
 
