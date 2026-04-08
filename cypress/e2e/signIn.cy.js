@@ -10,15 +10,14 @@ const homePage = new homePageObject();
 describe('Sign In page', () => {
   let user;
 
-  before(() => {
+  beforeEach(() => {
     cy.task('db:clear');
+
     cy.task('generateUser').then((generateUser) => {
       user = generateUser;
       cy.register(user.email, user.username, user.password);
     });
-  });
-
-  beforeEach(() => {
+    
     signInPage.visit();
   });
   

@@ -15,20 +15,17 @@ const signInPage = new SignInPageObject();
 describe('Settings page', () => {
   let user;
 
-  before(() => {
-    cy.task('generateUser').then((generateUser) => {
-      user = generateUser;
-    });
-  });
-
   beforeEach(() => {
     cy.task('db:clear');
 
-    settingsPage.visit();
+    cy.task('generateUser').then((generateUser) => {
+      user = generateUser;
+    });
 
-    cy.login();
+    cy.login().then(() => {
 
-    settingsPage.openSettingsPage();
+      settingsPage.visit();
+    });
   });
 
   it('should provide an ability to update username', () => {
