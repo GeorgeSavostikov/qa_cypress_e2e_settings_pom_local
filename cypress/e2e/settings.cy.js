@@ -5,6 +5,7 @@ import HomePageObject from '../support/pages/home.pageObject';
 import ProfilePageObject from '../support/pages/profile.pageObject';
 import SettingsPageObject from '../support/pages/settings.pageObject';
 import SignInPageObject from '../support/pages/signIn.pageObject';
+import defaultUser from '../fixtures/loginData.json';
 
 const settingsPage = new SettingsPageObject();
 const homePage = new HomePageObject();
@@ -54,7 +55,7 @@ describe('Settings page', () => {
     homePage.clickSignInBtn();
 
     signInPage.typeEmail(user.email);
-    signInPage.typePassword();
+    signInPage.typePassword(defaultUser.password);
     signInPage.clickSignInBtn();
 
     homePage.assertHeaderContainUsername('riot');
@@ -69,11 +70,11 @@ describe('Settings page', () => {
 
     homePage.clickSignInBtn();
 
-    signInPage.typeEmail();
+    signInPage.typeEmail(defaultUser.email);
     signInPage.typePassword(user.password);
     signInPage.clickSignInBtn();
 
-    homePage.assertHeaderContainUsername('riot');
+    homePage.assertHeaderContainUsername(defaultUser.username);
   });
 
   it('should provide an ability to log out', () => {

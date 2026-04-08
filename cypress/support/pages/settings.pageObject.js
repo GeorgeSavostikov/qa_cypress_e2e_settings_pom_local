@@ -32,23 +32,19 @@ class SettingsPageObject extends PageObject {
   }
 
   typeUserName(username) {
-    this.userNameField.type(username);
-  }
-
-  clearUserName() {
-    this.userNameField.clear();
+    this.userNameField.clear().type(username);
   }
 
   typeBio(bio) {
-    this.bioField.type(bio);
+    this.bioField.clear().type(bio);
   }
 
   typeEmail(email) {
-    this.emailField.type(email);
+    this.emailField.clear().type(email);
   }
 
   typePassword(password) {
-    this.passwordField.type(password);
+    this.passwordField.clear().type(password);
   }
 
   clickUpdateSettingsBtn() {

@@ -25,16 +25,16 @@ describe('Sign Up page', () => {
     signUpPage.typeUserName(user.username);
     signUpPage.typeEmail(user.email);
     signUpPage.typePassword(user.password);
-    signUpPage.clickSingUpBtn();
+    signUpPage.clickSignUpBtn();
 
     homePage.assertHeaderContainUsername(user.username);
   });
 
   it('should show error when email is already taken', () => {
-    signUpPage.typeUserName(user.username);
+    signUpPage.typeUserName(user.username + 'a');
     signUpPage.typeEmail(user.email);
     signUpPage.typePassword(user.password);
-    signUpPage.clickSingUpBtn();
+    signUpPage.clickSignUpBtn();
 
     signUpPage.errorEmailIsTaken();
   });
@@ -43,7 +43,7 @@ describe('Sign Up page', () => {
     signUpPage.typeUserName(user.username);
     signUpPage.typeEmail('a' + user.email);
     signUpPage.typePassword(user.password);
-    signUpPage.clickSingUpBtn();
+    signUpPage.clickSignUpBtn();
 
     signUpPage.errorUserNameIsTaken();
   });
