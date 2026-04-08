@@ -24,7 +24,7 @@ describe('Settings page', () => {
   beforeEach(() => {
     cy.task('db:clear');
 
-    homePage.visit('/settings');
+    settingsPage.visit();
 
     cy.login();
 

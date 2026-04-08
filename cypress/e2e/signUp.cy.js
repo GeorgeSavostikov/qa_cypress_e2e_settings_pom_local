@@ -10,14 +10,13 @@ const homePage = new HomePageObject;
 describe('Sign Up page', () => {
   let user;
 
-  before(() => {
+  beforeEach(() => {
     cy.task('db:clear');
+
     cy.task('generateUser').then((generateUser) => {
       user = generateUser;
     });
-  });
 
-  beforeEach(() => {
     signUpPage.visit();
   });
 
@@ -31,19 +30,27 @@ describe('Sign Up page', () => {
   });
 
   it('should show error when email is already taken', () => {
-    signUpPage.typeUserName(user.username + 'a');
-    signUpPage.typeEmail(user.email);
-    signUpPage.typePassword(user.password);
-    signUpPage.clickSignUpBtn();
+    const { email, username, password } = user;
+
+    cy.register(email, username, password).then(() => {
+      signUpPage.typeUserName(username + 'a');
+      signUpPage.typeEmail(email);
+      signUpPage.typePassword(password);
+      signUpPage.clickSignUpBtn();
+    });
 
     signUpPage.errorEmailIsTaken();
   });
 
   it('should show error when username is already taken', () => {
-    signUpPage.typeUserName(user.username);
-    signUpPage.typeEmail('a' + user.email);
-    signUpPage.typePassword(user.password);
-    signUpPage.clickSignUpBtn();
+    const { email, username, password } = user;
+    
+    cy.register(email, username, password).then(() => {
+      signUpPage.typeUserName(user.username);
+      signUpPage.typeEmail('a' + user.email);
+      signUpPage.typePassword(user.password);
+      signUpPage.clickSignUpBtn();
+    });
 
     signUpPage.errorUserNameIsTaken();
   });
