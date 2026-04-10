@@ -11,12 +11,20 @@ class ProfilePageObject extends PageObject {
     return cy.getByDataCy('profile-bio');
   }
 
+  get profileEditLink() {
+    return cy.getByDataCy('profile-edit-link');
+  }
+
   assertHeaderContainUsername(username) {
     this.profileHeader.should('contain', username);
   }
 
   assertBioContainCorrectData(bio) {
     this.profileBio.should('contain', bio);
+  }
+
+  clickProfileEditLink() {
+    this.profileEditLink.click();
   }
 }
 

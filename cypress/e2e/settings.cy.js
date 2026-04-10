@@ -22,10 +22,11 @@ describe('Settings page', () => {
       user = generateUser;
     });
 
-    cy.login().then(() => {
+    settingsPage.visit();
 
-      settingsPage.visit();
-    });
+    cy.login();
+
+    settingsPage.openSettingsPage();
   });
 
   it('should provide an ability to update username', () => {
@@ -46,7 +47,7 @@ describe('Settings page', () => {
     settingsPage.typeEmail(user.email);
     settingsPage.clickUpdateSettingsBtn();
 
-    settingsPage.openSettingsPage();
+    profilePage.clickProfileEditLink();
     settingsPage.clickLogOutSettingsBtn();
 
     homePage.clickSignInBtn();
@@ -62,7 +63,7 @@ describe('Settings page', () => {
     settingsPage.typePassword(user.password);
     settingsPage.clickUpdateSettingsBtn();
 
-    settingsPage.openSettingsPage();
+    profilePage.clickProfileEditLink();
     settingsPage.clickLogOutSettingsBtn();
 
     homePage.clickSignInBtn();
